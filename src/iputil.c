@@ -209,13 +209,13 @@ static int cidr_lua( lua_State *L )
         lstate_int2tbl( L, "byteorder", bo );
         switch( cidr.maskbit ){
             case 32:
-                lstate_int2tbl( L, "nip", 1 );
+                lstate_int2tbl( L, "hosts", 1 );
             break;
             case 31:
-                lstate_int2tbl( L, "nip", 0 );
+                lstate_int2tbl( L, "hosts", 0 );
             break;
             default:
-                lstate_int2tbl( L, "nip", to - from - 1 );
+                lstate_int2tbl( L, "hosts", to - from - 1 );
         }
         
         // byteorder
