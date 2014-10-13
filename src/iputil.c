@@ -198,7 +198,6 @@ static int cidr_lua( lua_State *L )
     {
         uint32_t from = ntohl( cidr.from );
         uint32_t to = ntohl( cidr.to );
-        uint32_t nip = to - from;
         struct in_addr addr = { .s_addr = cidr.from };
         char buf[IPU_IPLEN_MAX+1];
         
@@ -207,8 +206,17 @@ static int cidr_lua( lua_State *L )
         
         lua_newtable( L );
         lstate_str2tbl( L, "cidr", buf );
-        lstate_int2tbl( L, "nip", nip > 0 ? nip + 1 : 1 );
         lstate_int2tbl( L, "byteorder", bo );
+        switch( cidr.maskbit ){
+            case 32:
+                lstate_int2tbl( L, "nip", 1 );
+            break;
+            case 31:
+                lstate_int2tbl( L, "nip", 0 );
+            break;
+            default:
+                lstate_int2tbl( L, "nip", to - from - 1 );
+        }
         
         // byteorder
         if( bo == IPU_BO_HOST ){
