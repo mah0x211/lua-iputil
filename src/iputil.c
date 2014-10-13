@@ -95,6 +95,7 @@ static int ipstr2cidr( const char *ip, size_t len, ipu_cidr_t *cidr )
         {
             if( inet_pton( AF_INET, ip, (void*)&from ) == 1 ){
                 cidr->mask = 0xFFFFFFFFUL;
+                cidr->maskbit = 32;
                 cidr->ip = cidr->from = cidr->to = from.s_addr;
                 return 0;
             }
