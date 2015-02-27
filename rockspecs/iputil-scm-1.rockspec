@@ -17,6 +17,7 @@ build = {
     modules = {
         iputil = {
             sources = { "src/iputil.c" }
-        }
+        },
+        ["iputil.table"] = "libs/table.lua"
     }
 }
