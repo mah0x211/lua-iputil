@@ -178,7 +178,7 @@ static int cidr_lua( lua_State *L )
         case 3:
             if( !lua_isnil( L, 3 ) )
             {
-                bo = luaL_checkint( L, 3 );
+                bo = (int)luaL_checkinteger( L, 3 );
                 if( bo < IPU_BO_NET || bo > IPU_BO_HOST ){
                     goto INVALID_ARGS;
                 }
@@ -187,7 +187,7 @@ static int cidr_lua( lua_State *L )
         case 2:
             if( !lua_isnil( L, 2 ) )
             {
-                as = luaL_checkint( L, 2 );
+                as = (int)luaL_checkinteger( L, 2 );
                 if( as < IPU_AS_STR || as > IPU_AS_NUM ){
                     goto INVALID_ARGS;
                 }
@@ -276,7 +276,7 @@ static int inet_ntoa_lua( lua_State *L )
         case 3:
             if( !lua_isnil( L, 3 ) )
             {
-                int bo = luaL_checkint( L, 3 );
+                int bo = (int)luaL_checkinteger( L, 3 );
                 if( bo < IPU_BO_NET || bo > IPU_BO_HOST ){
                     goto INVALID_ARGS;
                 }
@@ -289,7 +289,7 @@ static int inet_ntoa_lua( lua_State *L )
         case 2:
             if( !lua_isnil( L, 2 ) )
             {
-                as = luaL_checkint( L, 2 );
+                as = (int)luaL_checkinteger( L, 2 );
                 if( as < IPU_AS_STR || as > IPU_AS_ARY ){
                     goto INVALID_ARGS;
                 }
